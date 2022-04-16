@@ -70,19 +70,6 @@ dagger.#Plan & {
 			}
 		}
 
-        buildWindowsAmd64: go.#Build & {
-			source:  _source
-			package: "github.com/c16a/netutils"
-			os:      "windows"
-			arch:    "amd64"
-
-			ldflags: "-s -w"
-
-			env: {
-				CGO_ENABLED: "0"
-			}
-		}
-
 		// Go unit tests
 		test: go.#Test & {
 			// container: image: _goImage.output

@@ -31,4 +31,3 @@ jobs:
             do buildLinuxArm64
             do buildDarwinAmd64
             do buildDarwinArm64
-            do buildWindowsAmd64
