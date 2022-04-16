@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/c16a/netutils/utils"
 	"github.com/gorilla/websocket"
 	"github.com/spf13/cobra"
 	"log"
@@ -23,7 +24,8 @@ var websocketCommand = &cobra.Command{
 	Use:   "websocket",
 	Short: "Perform Websocket operations",
 	RunE: func(cmd *cobra.Command, args []string) error {
-		c, _, err := websocket.DefaultDialer.Dial(WsUrl, nil)
+		headers := utils.ToMultiValuedMap(WsHeaders)
+		c, _, err := websocket.DefaultDialer.Dial(WsUrl, headers)
 		if err != nil {
 			return err
 		}
