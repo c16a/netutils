@@ -18,19 +18,68 @@ dagger.#Plan & {
 	actions: {
 		_source: client.filesystem["."].read.contents
 
-		build: go.#Build & {
+		buildLinuxAmd64: go.#Build & {
 			source:  _source
 			package: "github.com/c16a/netutils"
-			os:      client.platform.os
-			arch:    client.platform.arch
+			os:      "linux"
+			arch:    "amd64"
 
 			ldflags: "-s -w"
 
 			env: {
 				CGO_ENABLED: "0"
-				// Makes sure the linter and unit tests complete before starting the build
-				// "__depends_lint":  "\(goLint.exit)"
-				// "__depends_tests": "\(goTest.exit)"
+			}
+		}
+
+        buildLinuxArm64: go.#Build & {
+			source:  _source
+			package: "github.com/c16a/netutils"
+			os:      "linux"
+			arch:    "arm64"
+
+			ldflags: "-s -w"
+
+			env: {
+				CGO_ENABLED: "0"
+			}
+		}
+
+        buildDarwinAmd64: go.#Build & {
+			source:  _source
+			package: "github.com/c16a/netutils"
+			os:      "darwin"
+			arch:    "amd64"
+
+			ldflags: "-s -w"
+
+			env: {
+				CGO_ENABLED: "0"
+			}
+		}
+
+        buildDarwinArm64: go.#Build & {
+			source:  _source
+			package: "github.com/c16a/netutils"
+			os:      "darwin"
+			arch:    "arm64"
+
+			ldflags: "-s -w"
+
+			env: {
+				CGO_ENABLED: "0"
+			}
+		}
+
+        buildWindowsAmd64: go.#Build & {
+			source:  _source
+			package: "github.com/c16a/netutils"
+			os:      "windows"
+			arch:    "amd64"
+
+			ldflags: "-s -w"
+
+			env: {
+				CGO_ENABLED: "0"
 			}
 		}
 

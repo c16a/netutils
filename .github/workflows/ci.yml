@@ -27,4 +27,8 @@ jobs:
         with:
           cmds: |
             project update
-            do build
+            do buildLinuxAmd64
+            do buildLinuxArm64
+            do buildDarwinAmd64
+            do buildDarwinArm64
+            do buildWindowsAmd64
