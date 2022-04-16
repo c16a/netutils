@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  dagger:
+  linux:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
@@ -17,8 +17,34 @@ jobs:
 
       - name: Test
         uses: dagger/dagger-for-github@v2
-        # See all options at https://github.com/dagger/dagger-for-github
         with:
           cmds: |
             project update
             do test
+      
+      - name: Build
+        uses: dagger/dagger-for-github@v2
+        with:
+          cmds: |
+            project update
+            do build
+  
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Test
+        uses: dagger/dagger-for-github@v2
+        with:
+          cmds: |
+            project update
+            do test
+      
+      - name: Build
+        uses: dagger/dagger-for-github@v2
+        with:
+          cmds: |
+            project update
+            do build
